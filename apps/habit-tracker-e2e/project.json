@@ -1,0 +1,9 @@
+{
+  "name": "habit-tracker-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/habit-tracker-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["habit-tracker"],
+  "// targets": "to see all targets run: nx show project habit-tracker-e2e --web",
+  "targets": {}
+}
