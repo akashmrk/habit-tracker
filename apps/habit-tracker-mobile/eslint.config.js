@@ -1,15 +1,44 @@
-const nx = require('@nx/eslint-plugin');
-const baseConfig = require('../../eslint.config.js');
+const { FlatCompat } = require('@eslint/eslintrc');
+const nxEslintPlugin = require('@nx/eslint-plugin');
+const js = require('@eslint/js');
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+});
 
 module.exports = [
-  ...baseConfig,
-  ...nx.configs['flat/react'],
+  { plugins: { '@nx': nxEslintPlugin } },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Override or add rules here
-    rules: {},
+    rules: {
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          enforceBuildableLibDependency: true,
+          allow: [],
+          depConstraints: [
+            {
+              sourceTag: '*',
+              onlyDependOnLibsWithTags: ['*'],
+            },
+          ],
+        },
+      ],
+    },
   },
-  {
-    ignores: ['public', '.cache', 'node_modules'],
-  },
+  ...compat.config({ extends: ['plugin:@nx/react-typescript'] }).map((config) => ({
+    ...config,
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      ...config.rules,
+    },
+  })),
+  ...compat.config({ env: { jest: true } }).map((config) => ({
+    ...config,
+    files: ['**/*.spec.ts', '**/*.spec.tsx', '**/*.spec.js', '**/*.spec.jsx'],
+    rules: {
+      ...config.rules,
+    },
+  })),
 ];

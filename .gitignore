@@ -45,6 +45,11 @@ Thumbs.db
 .next
 out
 
+# Expo
+.expo/
+web-build/
+expo-env.d.ts
+
 # React Native
 
 # OSX
