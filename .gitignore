@@ -113,3 +113,6 @@ yarn-error.log
 
 # testing
 /coverage
+
+# MCP config (contains API keys)
+.mcp.json
