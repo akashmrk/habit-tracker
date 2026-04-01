@@ -1,14 +1,17 @@
 {
   "name": "habit-tracker-mobile",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
+  "main": "src/main.tsx",
   "dependencies": {
-    "@react-native/metro-config": "*",
-    "@testing-library/jest-native": "*",
-    "@testing-library/react-native": "*",
-    "react": "*",
-    "react-native": "*",
-    "react-native-svg": "*",
-    "metro-config": "*"
+    "expo": "~52.0.0",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.2",
+    "react-native": "0.76.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@types/react": "~18.3.12",
+    "@types/react-native": "~0.76.0"
   }
 }
